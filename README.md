@@ -23,20 +23,24 @@ Below is a typical usage scenario. You create fleet of IPFS nodes, then connect 
 
 IPFS node expect you to `stop` them explicitly, so do not forget to put `fleet.stop` at the end.
 
-```
+```typescript
 import {Fleet} from '@ukstv/ipfs-fleet';
 const n = 3;
 const fleet = await Fleet.build(n);
 // Here 3 IPFS nodes are created. They do not know about each other now.
+
 await fleet.connect(fleet.instances[0], fleet.instances[2]);
 // Now the first and the third nodes are connected to each other.
+
 await fleet.connectAll();
 // And now all the nodes aware of each other.
 
 // You could make them disconnect pairwise.
 await fleet.disconnect(fleet.instances[1], fleet.instances[2]);
+
 // Or you could disconnect them all at once.
 await fleet.disconnectAll();
+
 // As we are done, let IPFS nodes stop.
 await fleet.stop();
 ```
