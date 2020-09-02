@@ -2,6 +2,8 @@
 
 > Manage IPFS nodes fleet easily
 
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 It is common now while testing to create multiple IPFS nodes. Then tests proceed with checking against
 different connectivity graphs of those nodes. Code gets verbose fast. This library provides simple API over IPFS instantiation and connectivity graph.
 
