@@ -31,7 +31,7 @@ export class Fleet {
 
   constructor(readonly repositoryParent: DirectoryResult, readonly instances: IPFS.Ipfs[]) {}
 
-  static async build(n: number = 1) {
+  static async build(n: number = 1): Promise<Fleet> {
     const repositoryParent: DirectoryResult = await tmp.dir({
       unsafeCleanup: true,
     });
@@ -43,13 +43,13 @@ export class Fleet {
     return new Fleet(repositoryParent, instances);
   }
 
-  async connect(a: IPFS.Ipfs, b: IPFS.Ipfs) {
+  async connect(a: IPFS.Ipfs, b: IPFS.Ipfs): Promise<void> {
     await withAddresses(b, async (address) => {
       await a.swarm.connect(address);
     });
   }
 
-  async disconnect(a: IPFS.Ipfs, b: IPFS.Ipfs) {
+  async disconnect(a: IPFS.Ipfs, b: IPFS.Ipfs): Promise<void> {
     await withAddresses(a, async (address) => {
       await b.swarm.disconnect(address);
     });
@@ -58,7 +58,7 @@ export class Fleet {
     });
   }
 
-  async connectAll() {
+  async connectAll(): Promise<void> {
     for (let a of this.instances) {
       for (let b of this.instances) {
         const aId = await a.id();
@@ -71,7 +71,7 @@ export class Fleet {
     }
   }
 
-  async disconnectAll() {
+  async disconnectAll(): Promise<void> {
     for (let a of this.instances) {
       for (let b of this.instances) {
         await this.disconnect(a, b);
@@ -79,7 +79,7 @@ export class Fleet {
     }
   }
 
-  async stop() {
+  async stop(): Promise<void> {
     await this.repositoryParent.cleanup();
     await Promise.all(this.instances.map((ipfs) => ipfs.stop()));
     this.isRunning = false;
