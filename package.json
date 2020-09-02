@@ -1,7 +1,7 @@
 {
   "name": "@ukstv/ipfs-fleet",
   "version": "0.0.1",
-  "description": "Create fleet of connected ipfs nodes in JS",
+  "description": "Manage fleet of connected ipfs nodes in JS",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
