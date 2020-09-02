@@ -1,7 +1,7 @@
 {
   "name": "@ukstv/ipfs-fleet",
-  "version": "0.0.1",
-  "description": "Managegit remote add origin git@github.com:ukstv/ipfs-fleet.git fleet of connected ipfs nodes in JS",
+  "version": "0.0.2",
+  "description": "Manage fleet of connected IPFS nodes in JS",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -21,6 +21,15 @@
   "engines": {
     "node": ">=12",
     "pnpm": ">=5.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ukstv/ipfs-fleet.git"
+  },
+  "homepage": "https://github.com/ukstv/ipfs-fleet#readme",
+  "bugs": {
+    "url": "https://github.com/ukstv/ipfs-fleet/issues",
+    "email": "sergey+bug@ukstv.me"
   },
   "devDependencies": {
     "@types/faker": "^4.1.12",
