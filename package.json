@@ -1,0 +1,36 @@
+{
+  "name": "@ukstv/ipfs-fleet",
+  "version": "0.0.1",
+  "description": "Create fleet of connected ipfs nodes in JS",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/"
+  ],
+  "scripts": {
+    "build": "./node_modules/.bin/rimraf lib/ && ./node_modules/.bin/tsc --project tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sergey Ukustov <sergey@ukstv.me>",
+  "license": "Apache-2.0",
+  "keywords": [
+    "ipfs",
+    "testing",
+    "fleet"
+  ],
+  "engines": {
+    "node": ">=12",
+    "pnpm": ">=5.4"
+  },
+  "devDependencies": {
+    "intern": "^4.8.7",
+    "prettier": "^2.1.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "ipfs": "^0.49.1",
+    "tmp-promise": "^3.0.2"
+  }
+}
