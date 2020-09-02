@@ -1,7 +1,7 @@
 {
   "name": "@ukstv/ipfs-fleet",
   "version": "0.0.1",
-  "description": "Manage fleet of connected ipfs nodes in JS",
+  "description": "Managegit remote add origin git@github.com:ukstv/ipfs-fleet.git fleet of connected ipfs nodes in JS",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -12,7 +12,7 @@
     "test": "jest"
   },
   "author": "Sergey Ukustov <sergey@ukstv.me>",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "keywords": [
     "ipfs",
     "testing",
