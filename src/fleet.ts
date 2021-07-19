@@ -1,6 +1,6 @@
 import tmp from "tmp-promise";
 import type { DirectoryResult } from "tmp-promise";
-import IPFS from "ipfs";
+import * as ipfs from 'ipfs-core'
 import getPort from "get-port";
 import merge from "merge-options";
 
@@ -21,7 +21,7 @@ export async function ipfsConfig(parent: string, id: number, extend: Record<stri
   return merge(defaultConfig, extend);
 }
 
-async function withAddresses<A>(instance: IPFS.Ipfs, f: (address: IPFS.Ipfs.Multiaddr) => Promise<A>): Promise<A[]> {
+async function withAddresses<A>(instance: ipfs.IPFS, f: (address: any) => Promise<A>): Promise<A[]> {
   const addresses = (await instance.id()).addresses;
   return Promise.all(
     addresses.map((address) => {
@@ -33,7 +33,7 @@ async function withAddresses<A>(instance: IPFS.Ipfs, f: (address: IPFS.Ipfs.Mult
 export class Fleet {
   isRunning: boolean = true;
 
-  constructor(readonly repositoryParent: DirectoryResult, readonly instances: IPFS.Ipfs[]) {}
+  constructor(readonly repositoryParent: DirectoryResult, readonly instances: ipfs.IPFS[]) {}
 
   static async build(n: number = 1, extend: Record<string, unknown> = {}): Promise<Fleet> {
     const repositoryParent: DirectoryResult = await tmp.dir({
@@ -42,19 +42,19 @@ export class Fleet {
     const repositoryParentPath = repositoryParent.path;
     const instancesP = Array.from(Array(n)).map(async (_, i) => {
       const config = await ipfsConfig(repositoryParentPath, i, extend);
-      return IPFS.create(config);
+      return ipfs.create(config);
     });
     const instances = await Promise.all(instancesP);
     return new Fleet(repositoryParent, instances);
   }
 
-  async connect(a: IPFS.Ipfs, b: IPFS.Ipfs): Promise<void> {
+  async connect(a: ipfs.IPFS, b: ipfs.IPFS): Promise<void> {
     await withAddresses(b, async (address) => {
       await a.swarm.connect(address);
     });
   }
 
-  async disconnect(a: IPFS.Ipfs, b: IPFS.Ipfs): Promise<void> {
+  async disconnect(a: ipfs.IPFS, b: ipfs.IPFS): Promise<void> {
     await withAddresses(a, async (address) => {
       await b.swarm.disconnect(address);
     });

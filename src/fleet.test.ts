@@ -1,6 +1,6 @@
 import * as faker from "faker";
 import { Fleet } from "./fleet";
-import IPFS from "ipfs";
+import * as ipfs from "ipfs-core";
 
 test("Fleet.build", async () => {
   const n = faker.datatype.number(5);
@@ -13,11 +13,11 @@ test("Fleet.build", async () => {
 test("Fleet#stop", async () => {
   const n = faker.datatype.number(5);
   const repositoryParent = { cleanup: jest.fn(), path: "" };
-  const instances = (Array.from(Array(n)).map(() => {
+  const instances = Array.from(Array(n)).map(() => {
     return {
       stop: jest.fn(),
     };
-  }) as unknown) as IPFS.Ipfs[];
+  }) as unknown as ipfs.IPFS[];
   const fleet = new Fleet(repositoryParent, instances);
   await fleet.stop();
   expect(repositoryParent.cleanup).toBeCalled();
