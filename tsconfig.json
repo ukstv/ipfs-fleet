@@ -22,7 +22,6 @@
     "outDir": "lib/",
     "skipLibCheck": true,
     "importHelpers": true,
-    "typeRoots": ["types/", "node_modules/@types/"]
   },
   "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"]
 }
