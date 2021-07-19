@@ -47,6 +47,7 @@
     "get-port": "^5.1.1",
     "ipfs": "^0.55.4",
     "merge-options": "^3.0.4",
-    "tmp-promise": "^3.0.2"
+    "tmp-promise": "^3.0.2",
+    "tslib": "^2.3.0"
   }
 }

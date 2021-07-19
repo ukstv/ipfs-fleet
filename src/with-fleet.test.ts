@@ -1,7 +1,7 @@
 import { withFleet } from "./with-fleet";
 import faker from "faker";
 import getPort from "get-port";
-import { Fleet } from "../lib";
+import { Fleet } from "./fleet";
 
 test("return result of the task", async () => {
   const expectedResult = faker.datatype.string();
