@@ -4,7 +4,7 @@ import IPFS from "ipfs";
 import getPort from "get-port";
 import merge from "merge-options";
 
-export async function ipfsConfig(parent: string, id: number, extend: any = {}) {
+export async function ipfsConfig(parent: string, id: number, extend: Record<string, unknown> = {}) {
   const port = await getPort();
   const defaultConfig = {
     repo: `${parent}/ipfs_${id}/`,
@@ -35,7 +35,7 @@ export class Fleet {
 
   constructor(readonly repositoryParent: DirectoryResult, readonly instances: IPFS.Ipfs[]) {}
 
-  static async build(n: number = 1, extend: any = {}): Promise<Fleet> {
+  static async build(n: number = 1, extend: Record<string, unknown> = {}): Promise<Fleet> {
     const repositoryParent: DirectoryResult = await tmp.dir({
       unsafeCleanup: true,
     });
