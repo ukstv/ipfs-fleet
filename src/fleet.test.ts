@@ -3,7 +3,7 @@ import { Fleet } from "./fleet";
 import IPFS from "ipfs";
 
 test("Fleet.build", async () => {
-  const n = faker.random.number(5);
+  const n = faker.datatype.number(5);
   const fleet = await Fleet.build(n);
   expect(fleet.instances.length).toEqual(n);
   expect(fleet.isRunning).toBeTruthy();
@@ -11,7 +11,7 @@ test("Fleet.build", async () => {
 }, 100000);
 
 test("Fleet#stop", async () => {
-  const n = faker.random.number(5);
+  const n = faker.datatype.number(5);
   const repositoryParent = { cleanup: jest.fn(), path: "" };
   const instances = (Array.from(Array(n)).map(() => {
     return {

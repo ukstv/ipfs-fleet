@@ -1,12 +1,15 @@
 import tmp from "tmp-promise";
 import type { DirectoryResult } from "tmp-promise";
 import IPFS from "ipfs";
+import getPort from "get-port";
+import merge from "merge-options";
 
-export function ipfsConfig(parent: string, id: number) {
-  return {
+export async function ipfsConfig(parent: string, id: number, extend: any = {}) {
+  const port = await getPort();
+  const defaultConfig = {
     repo: `${parent}/ipfs_${id}/`,
     config: {
-      Addresses: { Swarm: [`/ip4/127.0.0.1/tcp/${4004 + id}`] },
+      Addresses: { Swarm: [`/ip4/127.0.0.1/tcp/${port}`] },
       Bootstrap: [],
       Discovery: {
         MDNS: {
@@ -15,6 +18,7 @@ export function ipfsConfig(parent: string, id: number) {
       },
     },
   };
+  return merge(defaultConfig, extend);
 }
 
 async function withAddresses<A>(instance: IPFS.Ipfs, f: (address: IPFS.Ipfs.Multiaddr) => Promise<A>): Promise<A[]> {
@@ -31,13 +35,14 @@ export class Fleet {
 
   constructor(readonly repositoryParent: DirectoryResult, readonly instances: IPFS.Ipfs[]) {}
 
-  static async build(n: number = 1): Promise<Fleet> {
+  static async build(n: number = 1, extend: any = {}): Promise<Fleet> {
     const repositoryParent: DirectoryResult = await tmp.dir({
       unsafeCleanup: true,
     });
     const repositoryParentPath = repositoryParent.path;
-    const instancesP = Array.from(Array(n)).map((_, i) => {
-      return IPFS.create(ipfsConfig(repositoryParentPath, i));
+    const instancesP = Array.from(Array(n)).map(async (_, i) => {
+      const config = await ipfsConfig(repositoryParentPath, i, extend);
+      return IPFS.create(config);
     });
     const instances = await Promise.all(instancesP);
     return new Fleet(repositoryParent, instances);

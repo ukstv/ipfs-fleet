@@ -3,12 +3,12 @@ lockfileVersion: 5.3
 specifiers:
   '@types/faker': ^5.5.7
   '@types/jest': ^26.0.24
-  '@types/lodash': ^4.14.171
   faker: ^5.5.3
+  get-port: ^5.1.1
   ipfs: ^0.55.4
   jest: ^27.0.6
   jest-resolver-enhanced: ^1.0.1
-  lodash: ^4.17.21
+  merge-options: ^3.0.4
   prettier: ^2.3.2
   rimraf: ^3.0.2
   tmp-promise: ^3.0.2
@@ -17,17 +17,17 @@ specifiers:
   typescript: ^4.3.5
 
 dependencies:
+  get-port: 5.1.1
   ipfs: 0.55.4
+  merge-options: 3.0.4
   tmp-promise: 3.0.2
 
 devDependencies:
   '@types/faker': 5.5.7
   '@types/jest': 26.0.24
-  '@types/lodash': 4.14.171
   faker: 5.5.3
   jest: 27.0.6_ts-node@10.1.0
   jest-resolver-enhanced: 1.0.1
-  lodash: 4.17.21
   prettier: 2.3.2
   rimraf: 3.0.2
   ts-jest: 27.0.3_jest@27.0.6+typescript@4.3.5
@@ -1164,10 +1164,6 @@ packages:
     dependencies:
       jest-diff: 26.6.2
       pretty-format: 26.6.2
-    dev: true
-
-  /@types/lodash/4.14.171:
-    resolution: {integrity: sha512-7eQ2xYLLI/LsicL2nejW9Wyko3lcpN6O/z0ZLHrEQsg280zIdCv1t/0m6UtBjUHokCGBQ3gYTbHzDkZ1xOBwwg==}
     dev: true
 
   /@types/long/4.0.1:
@@ -2990,6 +2986,11 @@ packages:
     resolution: {integrity: sha512-pjzuKtY64GYfWizNAJ0fr9VqttZkNiK2iS430LtIHzjBEr6bX8Am2zm4sW4Ro5wjWW5cAlRL1qAMTcXbjNAO2Q==}
     engines: {node: '>=8.0.0'}
     dev: true
+
+  /get-port/5.1.1:
+    resolution: {integrity: sha512-g/Q1aTSDOxFpchXC4i8ZWvxA1lnPqx/JHqcpIw0/LX9T8x/GBbi6YnlN5nhaKIFkT8oFsscUKgDJYxfwfS6QsQ==}
+    engines: {node: '>=8'}
+    dev: false
 
   /get-stdin/4.0.1:
     resolution: {integrity: sha1-uWjGsKBDhDJJAui/Gl3zJXmkUP4=}
